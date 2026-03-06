@@ -252,7 +252,8 @@ def check_intermediates(
             agent_value = entry
             entry = {"value": entry}
         else:
-                if matched_sibling:
+        else:
+            continue  # skip entries that are neither dict nor numeric
 
         # Try label match
         if term_name in checkpoints_ref:
