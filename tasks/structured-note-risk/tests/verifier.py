@@ -252,7 +252,7 @@ def check_intermediates(
             agent_value = entry
             entry = {"value": entry}
         else:
-            continue
+                if matched_sibling:
 
         # Try label match
         if term_name in checkpoints_ref:
