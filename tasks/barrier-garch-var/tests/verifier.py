@@ -367,7 +367,7 @@ def check_intermediates(
     ) else "INCOMPLETE"
 
     # ── Logical closeness ──
-    deliverables_dict = solution.get("deliverables", {}) if solution else {}
+    deliverables_dict = {}  # solution.json has no top-level "deliverables" key
     dangling = _count_dangling(intermediates, deliverables_dict)
 
     return {
