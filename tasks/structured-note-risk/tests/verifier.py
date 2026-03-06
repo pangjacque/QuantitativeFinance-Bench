@@ -254,8 +254,8 @@ def check_intermediates(
         else:
         else:
             continue  # skip entries that are neither dict nor numeric
-
-        # Try label match
+        else:
+            continue
         if term_name in checkpoints_ref:
             ref_cp = checkpoints_ref[term_name]
             matched_refs.add(term_name)
