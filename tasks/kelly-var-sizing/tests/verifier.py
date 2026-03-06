@@ -247,7 +247,7 @@ def check_intermediates(
                 "logical_closeness": {"dangling": 0},
             },
         }
-    intermediates = intermediates
+    assert isinstance(intermediates, dict)  # type narrowing, or just remove this line
     checkpoint_results = []
     matched_refs = set()
 
