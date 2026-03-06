@@ -1351,7 +1351,6 @@ def solve_sentiment(prices_data=None, dates=None, tickers=None,
     log_alpha_ann = log_alpha_daily * 252
 
     print(f"\n  Log returns alt:")
-    log_alpha_daily = float(log_result.intercept)
     print(f"\n  Log returns alt:")
     print(f"    mean_ic = {log_mean_ic:.6f}")
     print(f"    alpha_daily = {log_alpha_daily:.10f}")
