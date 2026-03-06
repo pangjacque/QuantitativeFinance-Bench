@@ -1,0 +1,117 @@
+{
+  "checkpoints": {
+    "garch_omega": {
+      "value": 4.979052399947791e-05,
+      "concept": "vol.garch",
+      "domain": "DV",
+      "tolerance": {
+        "rtol": 0.15
+      },
+      "siblings": {}
+    },
+    "garch_alpha": {
+      "value": 0.11426995411855383,
+      "concept": "vol.garch",
+      "domain": "DV",
+      "tolerance": {
+        "rtol": 0.15
+      },
+      "siblings": {}
+    },
+    "garch_beta": {
+      "value": 0.8414751983116865,
+      "concept": "vol.garch",
+      "domain": "DV",
+      "tolerance": {
+        "rtol": 0.05
+      },
+      "siblings": {}
+    },
+    "garch_persistence": {
+      "value": 0.9557451524302403,
+      "concept": "vol.garch",
+      "domain": "DV",
+      "tolerance": {
+        "rtol": 0.02
+      },
+      "siblings": {}
+    },
+    "long_run_variance": {
+      "value": 0.0011250863291528052,
+      "concept": "vol.garch",
+      "domain": "DV",
+      "tolerance": {
+        "rtol": 0.1
+      },
+      "siblings": {}
+    },
+    "garch_vol": {
+      "value": 0.5937950847931687,
+      "concept": "vol.garch",
+      "domain": "DV",
+      "tolerance": {
+        "rtol": 0.05
+      },
+      "siblings": {}
+    },
+    "bond_pv": {
+      "value": 994.6145537913911,
+      "concept": "",
+      "domain": "DV",
+      "tolerance": {
+        "rtol": 0.001,
+        "atol": 0.1
+      },
+      "siblings": {}
+    },
+    "option_unit_price": {
+      "value": 10.300195875733914,
+      "concept": "dv.barrier_option",
+      "domain": "DV",
+      "tolerance": {
+        "rtol": 0.02,
+        "atol": 0.1
+      },
+      "siblings": {}
+    },
+    "option_value": {
+      "value": 138.02450508614294,
+      "concept": "dv.barrier_option",
+      "domain": "DV",
+      "tolerance": {
+        "rtol": 0.02,
+        "atol": 0.5
+      },
+      "siblings": {}
+    },
+    "n_options": {
+      "value": 13.400182554907806,
+      "concept": "",
+      "domain": "DV",
+      "tolerance": {
+        "rtol": 0.001
+      },
+      "siblings": {}
+    },
+    "option_delta": {
+      "value": 0.5935510381383978,
+      "concept": "dv.bsm_analytical",
+      "domain": "DV",
+      "tolerance": {
+        "rtol": 0.02,
+        "atol": 0.01
+      },
+      "siblings": {}
+    },
+    "note_delta": {
+      "value": 7.953692266709576,
+      "concept": "",
+      "domain": "DV",
+      "tolerance": {
+        "rtol": 0.02,
+        "atol": 0.1
+      },
+      "siblings": {}
+    }
+  }
+}
