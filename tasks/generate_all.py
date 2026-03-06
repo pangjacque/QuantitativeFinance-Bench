@@ -327,7 +327,7 @@ def _run_mc_schemes(schemes_dict, mu_hat, cov_hat, initial_capital,
             dd = (running_max - wealth) / running_max
             max_drawdowns[name][p] = np.max(dd)
 
-    median_idx = (n_paths - 1) // 2
+    median_idx = n_paths // 2
     results = {}
     for name in schemes_dict:
         sorted_tw = np.sort(terminal_wealth[name])
@@ -366,30 +366,7 @@ def _run_mc_schemes_sharpe_excess(schemes_dict, mu_hat, cov_hat, initial_capital
             dd = (running_max - wealth) / running_max
             max_drawdowns[name][p] = np.max(dd)
 
-    # ── Step 6: Metrics ──
-    # Median terminal wealth (index n_paths // 2 after sorting)
     median_idx = n_paths // 2
-
-    results = {}
-    for name in ['full', 'var']:
-        sorted_tw = np.sort(terminal_wealth[name])
-        results[f'median_terminal_wealth_{name}'] = float(sorted_tw[median_idx])
-
-        # Sharpe: pool all daily returns across all paths
-        all_r = np.array(all_daily_returns[name])
-        sharpe = float(np.mean(all_r) / np.std(all_r, ddof=1) * math.sqrt(252))
-        results[f'sharpe_{name}'] = sharpe
-
-        # p50 drawdown: median of max_drawdowns
-        sorted_dd = np.sort(max_drawdowns[name])
-        results[f'p50_drawdown_{name}'] = float(sorted_dd[median_idx])
-
-    return results
-
-
-def _write_kelly_refs(ref_dir, primary_results, checkpoints_values,
-                      alt_rf, alt_sharpe, alt_dd_neg):
-    median_idx = (n_paths - 1) // 2
     results = {}
     for name in schemes_dict:
         sorted_tw = np.sort(terminal_wealth[name])
@@ -404,6 +381,11 @@ def _write_kelly_refs(ref_dir, primary_results, checkpoints_values,
         results[f'p50_drawdown_{name}'] = float(sorted_dd[median_idx])
 
     return results
+
+
+def _write_kelly_refs(ref_dir, primary_results, checkpoints_values,
+                      alt_rf, alt_sharpe, alt_dd_neg):
+    """Write all reference JSON files for kelly-var-sizing."""
 
     # ── checkpoints.json ──
     with open(os.path.join(ref_dir, 'checkpoints.json')) as f:
@@ -1319,9 +1301,7 @@ def solve_sentiment(prices_data=None, dates=None, tickers=None,
     print(f"    alpha_tstat = {alpha_tstat:.6f}")
 
     # ── Alt: log_returns — recompute portfolio, IC, regression with log returns ──
-    alpha_ann_compound = float((1 + alpha_daily) ** 252 - 1)
-    result = stats.linregress(mkt_aligned, portfolio_returns)
-    print(f"    alpha_ann (compound) = {alpha_ann_compound:.6f}")
+    log_daily_returns = np.zeros((N_DAYS, N_TICKERS))
     for t in range(1, N_DAYS):
         log_daily_returns[t] = np.log(prices_data[t] / prices_data[t - 1])
 
