@@ -41,7 +41,7 @@ A CSV file with one row per obligor and the following columns:
 
 ### 2. `sector_correlations.csv`
 
-A symmetric $10 \times 10$ correlation matrix for 10 sector equity factors.
+A symmetric $11 \times 11$ correlation matrix for 11 sector equity factors.
 The first column is the row index containing sector names.
 Column headers are the same names. Sectors:
 
