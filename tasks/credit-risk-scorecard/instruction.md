@@ -127,26 +127,19 @@ The "Missing" bin is exempt from monotonicity enforcement.
 
 ### 5. Scorecard Points (Siddiqi Formula)
 
-Compute scaling parameters from `config.json`:
+Use the industry-standard Siddiqi scaling method to convert logistic
+regression coefficients into integer scorecard points. The scaling is
+parameterised by three values from `config.json`:
 
-$$
-\text{Factor} = \frac{\text{PDO}}{\ln 2},\qquad
-\text{Offset} = \text{Target\_Score} - \text{Factor} \times \ln(\text{Target\_Odds})
-$$
+- `scorecard_pdo` — Points to Double the Odds
+- `scorecard_target_score` — Target score at the target odds
+- `scorecard_target_odds` — Target odds (non-default:default ratio)
 
-Points for feature $j$, bin $i$:
+Compute a scaling factor and offset from these parameters, then derive
+per-bin point values for each feature using the logistic regression
+coefficients, the WoE values, the intercept, and the number of selected
+features. **Round** each point value to the nearest integer.
 
-$$
-\text{Points}_{j,i} = -\left(\beta_j \times \text{WoE}_{j,i}
-                        + \frac{\alpha}{p}\right)
-                       \times \text{Factor}
-                       + \frac{\text{Offset}}{p}
-$$
-
-where $\beta_j$ is the logistic regression coefficient for feature $j$,
-$\alpha$ is the intercept, and $p$ is the number of selected features.
-
-**Round** each point value to the nearest integer.
 
 Total credit score for an applicant = sum of points across all features.
 
