@@ -12,3 +12,4 @@ COPY data/Transition-Matrix-2022.csv /app/data/Transition-Matrix-2022.csv
 COPY data/Transition-Matrix-2023.csv /app/data/Transition-Matrix-2023.csv
 COPY data/Transition-Matrix-2024.csv /app/data/Transition-Matrix-2024.csv
 COPY data/config.json /app/data/config.json
+COPY data/reference_transition_matrix.csv /app/data/reference_transition_matrix.csv
