@@ -5,7 +5,7 @@
 
 ## Objective
 
-Given a real corporate bond portfolio (~50 obligors drawn from iShares LQD
+Given a real corporate bond portfolio (990 obligors drawn from iShares LQD
 and HYG ETF holdings), sector-level equity correlation data, and a
 configuration file, build a **Monte Carlo credit portfolio model** using both
 **Gaussian** and **Student-t copulas** to estimate:

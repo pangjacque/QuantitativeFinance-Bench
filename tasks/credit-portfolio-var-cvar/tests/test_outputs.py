@@ -344,15 +344,15 @@ class TestConcentrationRisk:
             assert key in conc, f"Missing key: {key}"
 
     def test_hhi_bounded(self, conc):
-        """HHI is in (0, 1]. For ~50 obligors, obligor HHI should be
+        """HHI is in (0, 1]. For 990 obligors, obligor HHI should be
         much less than 1."""
         assert 0 < conc["obligor_hhi"] <= 1.0
         assert 0 < conc["sector_hhi"] <= 1.0
 
     def test_hhi_lower_bound(self, conc):
-        """With ~50 obligors, obligor HHI should be < 0.5 (not hyper-concentrated)."""
+        """With 990 obligors, obligor HHI should be < 0.5 (not hyper-concentrated)."""
         assert conc["obligor_hhi"] < 0.5, \
-            f"Obligor HHI ({conc['obligor_hhi']}) too high for ~50 obligors"
+            f"Obligor HHI ({conc['obligor_hhi']}) too high for 990 obligors"
 
     def test_top_5_exposures_count(self, conc):
         assert len(conc["top_5_exposures"]) == 5
@@ -658,7 +658,7 @@ class TestGranularityAdjustment:
                 f"gordy_to_mc_ratio must be > 0 at {row['confidence_level']}"
 
     def test_gordy_close_to_vasicek(self, df):
-        """For a well-diversified portfolio (~990 obligors), the
+        """For a well-diversified portfolio (990 obligors), the
         granularity adjustment should be small relative to Vasicek VaR
         (< 5% of Vasicek VaR)."""
         for _, row in df.iterrows():
