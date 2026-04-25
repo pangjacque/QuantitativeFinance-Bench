@@ -83,12 +83,25 @@ quantile function.
 
 ### Student-t Copula
 
-Implement the standard multivariate Student-t copula with $\nu$ degrees
-of freedom (`t_copula_df`). Use the normal-variance-mixture representation
-to introduce tail dependence. Both the systematic and idiosyncratic
-components must share a common mixing variable. Default thresholds must
-be calibrated using the appropriate quantile function to preserve
-marginal PDs.
+Implement the multivariate Student-t copula with $\nu$ degrees of freedom
+(`t_copula_df`) using the **normal-variance-mixture** representation:
+
+1. For each simulation, draw a common mixing variable
+   $W \sim \chi^2(\nu) / \nu$.
+2. Generate the same correlated normal sector factors $M$ and
+   idiosyncratic shocks $\varepsilon$ as in the Gaussian copula.
+3. Scale **both** by the shared mixing variable:
+   $M^{(t)} = M / \sqrt{W}$ and $\varepsilon^{(t)} = \varepsilon / \sqrt{W}$.
+4. Compute asset returns using the scaled components:
+   $A_i = \sqrt{\rho_i} \cdot M^{(t)}_{s(i)} + \sqrt{1-\rho_i} \cdot \varepsilon^{(t)}_i$.
+5. Default thresholds must use the **Student-t quantile function**:
+   $d_i = t^{-1}_\nu(\text{PD}_i)$ (not the normal quantile), to preserve
+   each obligor's marginal PD.
+
+The shared $W$ introduces **tail dependence**: in simulations where $W$
+is small, $1/\sqrt{W}$ is large, amplifying all shocks simultaneously
+and producing clustered defaults — the key difference from the Gaussian
+copula.
 
 ### Portfolio Loss, VaR, and CVaR
 
